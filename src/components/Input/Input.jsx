@@ -10,14 +10,17 @@ export const Input = () => {
     event.preventDefault();
     const name = event.target.elements.name.value;
     const number = event.target.elements.number.value;
-    console.log(name, number);
     if (contacts.some(contact => contact.name === name)) {
       alert(`Contact with the name ${name} already exists!`);
       return;
     }
-    
-    dispatch(addContact({ name, number }));
+    try {
+      dispatch(addContact({ name, number }));
+    } finally {
+      event.target.reset();
+    }
   };
+  
 
   return (
     <form className={s.formBox} autoComplete="off" onSubmit={createContact}>
