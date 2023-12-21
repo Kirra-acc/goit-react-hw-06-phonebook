@@ -3,15 +3,6 @@ import { ContactList } from './ContactList/ContactList.jsx';
 import { Filter } from './Filter/Filter.jsx';
 
 export const App = () => {
-  // const getFilteredData = () => {
-  //   if (filter) {
-  //     return contacts.filter(contact =>
-  //       contact.name.toLowerCase().includes(filter.toLowerCase())
-  //     );
-  //   }
-  //   return contacts;
-  // };
-
   return (
     <div
       style={{
