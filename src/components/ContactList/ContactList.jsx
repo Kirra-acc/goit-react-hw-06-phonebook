@@ -1,30 +1,21 @@
 import React from 'react';
 import { ListItem } from '../ListItem/ListItem.jsx';
 import s from './ContactList.module.css';
+import { useSelector } from 'react-redux';
 
-export const ContactList = ({
-  contacts,
-  getFilteredData,
-  children,
-  deleteContact,
-}) => {
-  const filteredContacts = getFilteredData(contacts);
+export const ContactList = ({ children }) => {
+  // const filteredContacts = getFilteredData(contacts);
 
+  const contacts = useSelector(state => state.phonebook.contacts);
   return (
     <>
       {children}
-      {filteredContacts.length === 0 ? (
+      {contacts.length === 0 ? (
         <p className={s.errorMessage}>No contacts match your search</p>
       ) : (
         <ul className={s.listOfContacts}>
-          {filteredContacts.map(({ id, name, number }) => (
-            <ListItem
-              key={id}
-              id={id}
-              name={name}
-              number={number}
-              deleteContact={deleteContact}
-            />
+          {contacts.map(({ id, name, number }) => (
+            <ListItem key={id} id={id} name={name} number={number} />
           ))}
         </ul>
       )}

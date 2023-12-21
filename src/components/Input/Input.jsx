@@ -1,10 +1,10 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import s from './Input.module.css';
 
-export const Input = ({ contacts, newContactState }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+export const Input = () => {
+  // const [name, setName] = useState('');
+  // const [number, setNumber] = useState('');
 
   const handleValueChange = event => {
     const { name, value } = event.currentTarget;
