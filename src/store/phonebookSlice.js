@@ -14,7 +14,9 @@ export const phonebookSlice = createSlice({
   },
   reducers: {
     deleteContact: (state, { payload }) => {
-      state.contacts.filter(contact => contact.id !== payload);
+      state.contacts = state.contacts.filter(
+        contact => contact.id !== payload
+      );
     },
     setFilter: (state, { payload }) => {
       state.filter = payload;
@@ -22,13 +24,15 @@ export const phonebookSlice = createSlice({
     addContact: {
       prepare: ({ name, number }) => {
         return {
-          id: nanoid(),
-          name,
-          number,
+          payload: {
+            id: nanoid(5),
+            name,
+            number,
+          },
         };
       },
       reducer: (state, { payload }) => {
-        state.contacts.push({ payload });
+        state.contacts.push( payload );
       },
     },
   },

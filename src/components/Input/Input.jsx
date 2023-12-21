@@ -1,39 +1,20 @@
-// import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import s from './Input.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../store/phonebookSlice.js';
 
 export const Input = () => {
-  // const [name, setName] = useState('');
-  // const [number, setNumber] = useState('');
-
-  const handleValueChange = event => {
-    const { name, value } = event.currentTarget;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
-  };
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.newContact);
 
   const createContact = event => {
     event.preventDefault();
-
-    const newContact = { name, number, id: nanoid() };
-
+    const name = event.target.elements.name.value;
+    const number = event.target.elements.number.value;
     if (contacts.some(contact => contact.name === name)) {
       alert(`Contact with the name ${name} already exists!`);
       return;
     }
-
-    newContactState(newContact);
-
-    setName('');
-    setNumber('');
+    dispatch(addContact({ name, number }));
   };
 
   return (
@@ -42,8 +23,6 @@ export const Input = () => {
         <label className={s.formLabel}>
           <input
             className={s.formInput}
-            value={name}
-            onChange={handleValueChange}
             type="text"
             name="name"
             placeholder="Contact name"
@@ -55,8 +34,6 @@ export const Input = () => {
         <label className={s.formLabel}>
           <input
             className={s.formInput}
-            onChange={handleValueChange}
-            value={number}
             type="tel"
             name="number"
             placeholder="Phone number"

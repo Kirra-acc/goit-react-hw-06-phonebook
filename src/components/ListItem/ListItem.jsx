@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './ListItem.module.css';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'store/phonebookSlice';
+import { deleteContact } from '../../store/phonebookSlice.js';
 
 export const ListItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
