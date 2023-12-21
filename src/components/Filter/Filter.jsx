@@ -4,8 +4,8 @@ import { setFilter } from '../../store/phonebookSlice.js';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const handleFilter = e => {
-    dispatch(setFilter(e.target.value));
+  const handleFilter = event => {
+    dispatch(setFilter(event.target.value));
   };
 
   return (
